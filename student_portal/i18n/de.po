@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: student_portal\n"
+"POT-Creation-Date: 2024-05-16 12:00+0000\n"
+"PO-Revision-Date: 2024-05-16 12:00+0000\n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: controllers/main.py:10
+msgid "Student List"
+msgstr "Studentenliste"
+
+#: views/portal_templates.xml:6
+msgid "Name"
+msgstr "Name"
+
+#: views/portal_templates.xml:7
+msgid "Email"
+msgstr "E-Mail"

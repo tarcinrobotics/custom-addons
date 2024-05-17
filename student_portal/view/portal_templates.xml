@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="portal_template" name="Student Portal">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h1>Student List</h1>
+                    <ul>
+                        <t t-foreach="students" t-as="student">
+                            <li><t t-esc="student.name"/> - <t t-esc="student.email"/></li>
+                        </t>
+                    </ul>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
