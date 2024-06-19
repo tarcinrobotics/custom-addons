@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_portal_my_home" name="My Custom Portal Home" inherit_id="portal.portal_my_home" priority="99">
+        <xpath expr="//div[@id='oe_structure_portal_my_home_1']" position="inside">
+            <t t-if="user_id.sudo().is_parent">
+                <h3>
+                    <span t-esc="stu_id.name"/>
+                    <span>Documents</span>
+                </h3>
+            </t>
+            <t t-else="1">
+                <h3>
+                    <t t-esc="user_id.name"/>
+                    <span>Documents</span>
+                </h3>
+            </t>
+        </xpath>
+        <xpath expr="//div[@id='portal_alert_category']" position="after">
+            <div class="o_portal_category row g-2 mt-3" id="portal_openeducat_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/student_port_ajmeer/static/src/img/student-profile.svg'"/>
+                    <t t-set="title">Student Profile</t>
+                    <t t-set="text">Student data for easy access and management</t>
+                    <t t-set="url" t-value="'/student/profile'"/>
+                    <t t-set="placeholder_count" t-value="'student_count'" />
+                    <t t-if="is_parent">
+                        <t t-set="url" t-value="'/student/profile/' + student_id"/>
+                    </t>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/student_port_ajmeer/static/src/img/bag.svg'"/>
+                    <t t-set="title">Subject Registration</t>
+                    <t t-set="text">Process of enrolling in courses and subjects</t>
+                    <t t-set="url" t-value="'/subject/registration/'"/>
+                    <t t-if="is_parent">
+                        <t t-set="url" t-value="'/subject/registration/' + student_id"/>
+                    </t>
+                    <t t-set="config_card" t-value="True"/>
+                    <t t-set="show_oe_count" t-value="True"/>
+                    <t t-set="oe_count" t-value="registration_count or 0"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/openeducat_core_enterprise/static/src/img/academic-calendar.svg'"/>
+                    <t t-set="title">Academic Calendar</t>
+                    <t t-set="text">Track of important dates and academic events</t>
+                    <t t-set="url" t-value="'/my/academic-calendar/'"/>
+                    <t t-if="is_parent">
+                        <t t-set="url" t-value="'/my/academic-calendar/' + student_id"/>
+                    </t>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/student_port_ajmeer/static/src/img/student-profile.svg'"/>
+                    <t t-set="title">Student Profile Ajmeer Testing</t>
+                    <t t-set="text">Student data for easy access and management</t>
+                    <t t-set="url" t-value="'/student/ajmeer'"/>
+                    <t t-set="placeholder_count" t-value="'student_count'" />
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+

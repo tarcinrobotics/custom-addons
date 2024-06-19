@@ -1,0 +1,22 @@
+from odoo import http
+from odoo.http import request
+
+class StudentPortal(http.Controller):
+
+    @http.route(['/student/profile'], type='http', auth='public', website=True)
+    def student_profile(self, **kw):
+        students = request.env['op.student'].sudo().search([])
+        print("student--",students)
+        # Print student names
+        for student in students:
+            print("Student Name:", student.email)  # Assuming 'name' is the field holding student names
+            print("Student Name:", student.name)
+        #values = {
+        #    'student': student,
+        # }
+        return request.render('student_port_ajmeer.custom_portal_ajmeer', {
+            "students": students
+        })
+         #return "This is Stage Two., Printing Hello World"
+
+

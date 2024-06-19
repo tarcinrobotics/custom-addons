@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_portal_ajmeer">
+        <t t-call="website.layout">
+            <div class="container">
+                <p>We are slowly getting there</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Birth Date</th>
+                            <th>Blood Group</th>
+                            <th>Gender</th>
+                            <th>Nationality</th>
+                            <th>Emergency Contact</th>
+                            <th>User Id</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="students" t-as="student">
+                            <tr>
+                                <td><t t-esc="student.name"/></td>
+                                <td><t t-esc="student.email"/></td>
+                                <td><t t-esc="student.birth_date"/></td>
+                                <td><t t-esc="student.blood_group"/></td>
+                                <td><t t-esc="student.gender"/></td>
+                                <td><t t-esc="student.nationality"/></td>
+                                <td><t t-esc="student.emergency_contact"/></td>
+                                <td><t t-esc="student.user_id"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_portal_docs_entry_attendance" inherit_id="student_port_ajmeer.custom_portal_my_home">
+        <xpath expr="//div[@id='portal_openeducat_category']" position="inside">
+        <t t-call="portal.portal_docs_entry">
+            <t t-set="icon">/openeducat_attendance_enterprise/static/src/img/attendance.svg</t>
+            <t t-set="title">Attendance</t>
+            <t t-set="text">Manage student attendance records accurately</t>
+            <t t-set="url">/student/attendance/</t>
+            <t t-if="is_parent">
+                <t t-set="url" t-value="'/student/attendance/' + student_id"/>
+            </t>
+            <t t-set="config_card">True</t>
+            <t t-set="show_oe_count">True</t>
+            <t t-set="oe_count" t-value="attendance_count or 0"/>
+        </t>
+        </xpath>
+    </template>
+</odoo>
+
