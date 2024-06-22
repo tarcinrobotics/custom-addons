@@ -13,7 +13,7 @@ class StudentPortal(http.Controller):
 
         if student:
             print("Student Name:", student.name)
-            print("Student Email:", student.email)
+            print("Student Email:", student.nationality)
 
             return request.render('student_port_ajmeer.custom_portal_ajmeer', {
                 "students": [student]  # Render as a list for consistency with previous logic

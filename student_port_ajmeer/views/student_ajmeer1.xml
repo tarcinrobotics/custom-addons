@@ -172,7 +172,32 @@
                                                             <span t-esc="subject.name" class="badge bg-secondary me-1"/>
                                                         </t>
                                                     </td>
-                                                    <td t-esc="course_detail.roll_number or ''"/>
+                                                    <td t-esc="course_detail.faculty_id.name or ''"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <div class="mb-4">
+                                        <h4>History</h4>
+                                    </div>
+                                    <table class="mt16 table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Academic Year</th>
+                                                <th>Standard</th>
+                                                <th>Division</th>
+                                                <th>Percentage</th>
+                                                <th>Rank</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="student.standard_entry_ids" t-as="standard_entry">
+                                                <tr>
+                                                    <td t-esc="standard_entry.year or ''"/>
+                                                    <td t-esc="standard_entry.standard_id.name or ''"/>
+                                                    <td t-esc="standard_entry.division_id.name or ''"/>
+                                                    <td t-esc="standard_entry.percentage or ''"/>
+                                                    <td t-esc="standard_entry.rank or ''"/>
                                                 </tr>
                                             </t>
                                         </tbody>

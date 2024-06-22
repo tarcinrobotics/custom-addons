@@ -4,26 +4,29 @@
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
             <t t-set="title" t-value="'Student Information'"/>
+
             <t t-call="portal.portal_searchbar"/>
+
             <t t-if="not students">
                 <p>There is currently no information for your account!</p>
             </t>
+
             <t t-if="students">
                 <div class="row pt48 pr-md-3" id="student-profile">
                     <div class="col-md-4 col-lg-3 col-12 mb24">
                         <ul class="nav nav-pills">
                             <li class="pr_info">
                                 <a href="#personal_info" aria-expanded="false" data-bs-toggle="tab" role="tab" class="active">
-                                    <h5 class="mb0">Personal Information</h5>
-                                </a>
-                            </li>
-                            <li class="ed_info">
-                                <a href="#education_info" aria-expanded="false" data-bs-toggle="tab" role="tab">
-                                    <h5 class="mb0">Educational</h5>
+                                    <h5 class="mb0">
+                                        Personal Information
+                                    </h5>
                                 </a>
                             </li>
                         </ul>
                     </div>
+    <t t-call="student_port_ajmeer.student_portal_educational_information">
+        <t t-set="students" t-value="student"/>
+    </t>
                     <div class="col-md-8 col-lg-9 col-12 tab-content-box">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="personal_info">
@@ -138,45 +141,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </t>
-                            </div>
-                            <div class="tab-pane fade" id="education_info">
-                                <t t-foreach="students" t-as="student">
-                                    <div class="row col-md-12">
-                                        <div>
-                                            <strong>Gr Number:</strong>
-                                            <span t-esc="student.gr_no"/>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <h4>Admission Detail</h4>
-                                    </div>
-                                    <table class="mt16 table table-condensed">
-                                        <thead>
-                                            <tr>
-                                                <th>Course</th>
-                                                <th>Batch</th>
-                                                <th>Roll Number</th>
-                                                <th>Subjects</th>
-                                                <th>Faculty Advisor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="student.course_detail_ids" t-as="course_detail">
-                                                <tr>
-                                                    <td t-esc="course_detail.course_id.name or ''"/>
-                                                    <td t-esc="course_detail.batch_id.name or ''"/>
-                                                    <td t-esc="course_detail.roll_number or ''"/>
-                                                    <td>
-                                                        <t t-foreach="course_detail.subject_ids" t-as="subject">
-                                                            <span t-esc="subject.name" class="badge bg-secondary me-1"/>
-                                                        </t>
-                                                    </td>
-                                                    <td t-esc="course_detail.roll_number or ''"/>
-                                                </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
                                 </t>
                             </div>
                         </div>

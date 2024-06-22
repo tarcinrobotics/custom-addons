@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template  id="student_portal_educational_information" name="My Custom Portal Student Information"  inherit_id="student_port_ajmeer.custom_portal_ajmeer" priority="10">
+        <!-- Add Educational Information Tab -->
+        <xpath expr="//ul[contains(@class, 'nav-pills')]" position="inside">
+            <li class="ed_info">
+                <a href="#education_info" aria-expanded="false" data-bs-toggle="tab" role="tab">
+                    <h5 class="mb0">
+                        Educational
+                    </h5>
+                </a>
+            </li>
+        </xpath>
+        
+        <!-- Add Tab Content for Educational Information -->
+        <xpath expr="//div[contains(@class, 'tab-content')]" position="inside">
+            <div class="tab-pane fade" id="education_info">
+                <div t-if="student.gr_no" class="row col-md-12">
+                    <div>
+                        <strong>Gr Number:</strong>
+                    </div>
+                    <div class="col-md-8">
+                        <span t-esc="student.gr_no"/>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h4>Admission Detail</h4>
+                </div>
+                <table class="mt16 table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Batch</th>
+                            <th>Roll Number</th>
+                            <th>Subjects</th>
+                            <th>Faculty Advisor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="student.course_detail_ids" t-as="course_detail">
+                            <tr>
+                                <td>
+                                    <span t-esc="course_detail.course_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="course_detail.batch_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="course_detail.roll_number"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="course_detail.subject_ids" t-as="subject">
+                                        <li style="list-style-type: none;" t-esc="subject.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-esc="course_detail.roll_number"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+
