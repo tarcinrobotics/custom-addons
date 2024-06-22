@@ -9,7 +9,7 @@
     'depends': ['base', 'portal'],
     'data': [
       #  'security/ir.model.access.csv',
-        'views/student_action_views.xml',
+#        'views/student_action_views.xml',
         'views/student_views.xml',
         'views/student_ajmeer.xml',
 #        'views/student_education.xml',

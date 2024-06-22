@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_portal_ajmeer">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-set="title" t-value="'Student Information'"/>
+            <t t-call="portal.portal_searchbar"/>
+            <t t-if="not students">
+                <p>There is currently no information for your account!</p>
+            </t>
+            <t t-if="students">
+                <div class="row pt48 pr-md-3" id="student-profile">
+                    <div class="col-md-4 col-lg-3 col-12 mb24">
+                        <ul class="nav nav-pills">
+                            <li class="pr_info">
+                                <a href="#personal_info" aria-expanded="false" data-bs-toggle="tab" role="tab" class="active">
+                                    <h5 class="mb0">Personal Information</h5>
+                                </a>
+                            </li>
+                            <li class="ed_info">
+                                <a href="#education_info" aria-expanded="false" data-bs-toggle="tab" role="tab">
+                                    <h5 class="mb0">Educational</h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8 col-lg-9 col-12 tab-content-box">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="personal_info">
+                                <t t-foreach="students" t-as="student">
+                                    <div class="row align-items-center text-center text-md-start">
+                                        <div class="col-md-3">
+                                            <img class="img img-responsive img-fluid" t-att-src="image_data_uri(student.image_1920)" style="border: 4px solid #e7e7e7;"/>
+                                        </div>
+                                        <div class="col-md-9 mt-3 mt-md-0">
+                                            <div t-if="student.name">
+                                                <h3 id="student_name" t-esc="student.name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr t-if="student.gender">
+                                                <th>Gender</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/sign.svg" class="img-fluid me-2" alt="Gender" title="Gender" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="{False:False, 'm':'Male', 'f':'Female', 'o':'Other' }[student.gender]"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.birth_date">
+                                                <th>Birth Date</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/interface.svg" class="img-fluid me-2" alt="Birth Date" title="Birth Date" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="student.birth_date" t-options="{'widget': 'date'}"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.blood_group">
+                                                <th>Blood Group</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/medical.svg" class="img-fluid me-2" alt="Blood Group" title="Blood Group" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="{False:False, 'B+':'B+ve', 'O+':'O+ve', 'AB+':'AB+ve','A-':'A-ve','B-':'B-ve','O-':'O-ve','AB-':'AB-ve','A+':'A+ve'}[student.blood_group]"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.nationality">
+                                                <th>Nationality</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/maps-and-flags.svg" class="img-fluid me-2" alt="Nationality" title="Nationality" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="student.nationality.name"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.mobile">
+                                                <th>Mobile</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/communications.svg" class="img-fluid me-2" alt="Mobile" title="Mobile" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="student.mobile"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.email">
+                                                <th>Email</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/envelopes.svg" class="img-fluid me-2" alt="Email" title="Email" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="student.email"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="student.visa_info">
+                                                <th>Visa Info</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/passport.svg" class="img-fluid me-2" alt="Visa Info" title="Visa Info" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p t-esc="student.visa_info"/>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address</th>
+                                                <td>
+                                                    <div class="align-items-start media d-flex">
+                                                        <img src="/student_port_ajmeer/static/src/img/address.svg" class="img-fluid me-2" alt="Address" title="Address" style="width: 20px;"/>
+                                                        <div class="media-body flex-grow-1">
+                                                            <p>
+                                                                <t t-if="student.street">
+                                                                <span t-esc="student.street"/>,
+                                                                </t>
+                                                                <t t-if="student.street2">
+                                                                <span t-esc="student.street2"/>
+                                                                </t>
+                                                                <br/>
+                                                                <t t-if="student.city">
+                                                                <span t-esc="student.city"/>,
+                                                                </t>
+                                                                <t t-if="student.state_id">
+                                                                <span t-esc="student.state_id.name"/>,
+                                                                </t>
+                                                                <t t-if="student.zip">
+                                                                <span t-esc="student.zip"/>
+                                                                </t>
+                                                                <br/>
+                                                                <t t-if="student.country_id">
+                                                                <span t-esc="student.country_id.name"/>
+                                                                </t>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </t>
+                            </div>
+                            <div class="tab-pane fade" id="education_info">
+                                <t t-foreach="students" t-as="student">
+                                    <div class="row col-md-12">
+                                        <div>
+                                            <strong>Gr Number:</strong>
+                                            <span t-esc="student.gr_no"/>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h4>Admission Detail</h4>
+                                    </div>
+                                    <table class="mt16 table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Batch</th>
+                                                <th>Roll Number</th>
+                                                <th>Subjects</th>
+                                                <th>Faculty Advisor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="student.course_detail_ids" t-as="course_detail">
+                                                <tr>
+                                                    <td t-esc="course_detail.course_id.name or ''"/>
+                                                    <td t-esc="course_detail.batch_id.name or ''"/>
+                                                    <td t-esc="course_detail.roll_number or ''"/>
+                                                    <td>
+                                                        <t t-foreach="course_detail.subject_ids" t-as="subject">
+                                                            <span t-esc="subject.name" class="badge bg-secondary me-1"/>
+                                                        </t>
+                                                    </td>
+                                                    <td t-esc="course_detail.roll_number or ''"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
